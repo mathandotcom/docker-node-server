@@ -2,7 +2,7 @@ var http = require('http');
 var handleRequest = function (request, response) {
   response.writeHead(200);
   
-  response.end('Hello from Node Server App deployed on ECS!! Congratulations - v1');
+  response.end('Hello from Node Server App deployed on ECS!! Congratulations - v2');
   
 };
 var www = http.createServer(handleRequest);
