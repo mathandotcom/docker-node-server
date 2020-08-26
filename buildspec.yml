@@ -4,15 +4,8 @@ phases:
     commands: 
       - "echo Logging in to Docker Hub..."
       - "docker login --username=\"mathandotcom\" --password=\"mm070676\""
-  build: 
-    commands: 
-      - "echo Build started on `date`"
-      - "echo Building the Docker image..."
-      - "docker build -t mycontainer ."
-      - "docker tag mycontainer mathandotcom/samplenode:v2"
-      
-  post_build: 
-    commands: 
-      - "echo Build completed on `date`"
-      - "echo Pushing the Docker image..."
-      - "docker push mathandotcom/samplenode:v2"
+  build:
+    commands:
+      - echo build Docker image on `date`
+      - cd src
+      - docker build -t mycontainer:latest .
