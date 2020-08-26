@@ -8,7 +8,8 @@ phases:
     commands: 
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - "docker build -t mathandotcom/samplenode:latest ."
+      - "docker build -t mycontainer ."
+      - "docker tag mycontainer mathandotcom/samplenode:latest"
       
   post_build: 
     commands: 
