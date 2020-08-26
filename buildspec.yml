@@ -9,10 +9,10 @@ phases:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
       - "docker build -t mycontainer ."
-      - "docker tag mycontainer mathandotcom/samplenode:latest"
+      - "docker tag mycontainer mathandotcom/samplenode:v2"
       
   post_build: 
     commands: 
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
-      - "docker push mathandotcom/samplenode:latest"
+      - "docker push mathandotcom/samplenode:v2"
