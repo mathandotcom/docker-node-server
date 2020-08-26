@@ -6,7 +6,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - $(aws ecr get-login --no-include-email --region us-east-1)
       - REPOSITORY_URI=529625914815.dkr.ecr.us-east-1.amazonaws.com/dockerpush
       
   build:
