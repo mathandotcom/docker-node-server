@@ -1,21 +1,23 @@
 version: 0.2
+
+
 phases:
-  install:
-    commands:
-      - echo install step...
   pre_build:
     commands:
-      - echo logging in to AWS ECR...
-      - $(aws ecr get-login --no-include-email --region us-east-1)
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=529625914815.dkr.ecr.us-east-1.amazonaws.com/dockerpush
       
   build:
     commands:
-      - echo build Docker image on `date`
-      - cd src
-      - docker build -t dockerpush .
-      - docker tag dockerpush:latest 529625914815.dkr.ecr.us-east-1.amazonaws.com/dockerpush:latest
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:latest
   post_build:
     commands:
-      - echo build Docker image complete `date`
-      - echo push latest Docker images to ECR...
-      - docker push 529625914815.dkr.ecr.us-east-1.amazonaws.com/dockerpush:latest
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:latest
+      - echo Writing image definitions file...
