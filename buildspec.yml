@@ -8,6 +8,12 @@ phases:
       - aws --version
       - $(aws ecr get-login --no-include-email --region us-east-1)
       - REPOSITORY_URI=529625914815.dkr.ecr.us-east-1.amazonaws.com/dockerpush
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo "Commit Hash :" $COMMIT_HASH 
+      - echo $CODEBUILD_BUILD_ID
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - echo "Image Tag :" $IMAGE_TAG
       
   build:
     commands:
